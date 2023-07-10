@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pay to Contacts - Rapid Pay</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Rapid Pay</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/pay_to_contacts">Pay to Contacts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/recharge">Recharge</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Sign Out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <h1 class="text-center mt-4">Pay to Contacts</h1>
+        <p class="text-center mt-4">Select a contact:</p>
+        <div class="row justify-content-center">
+            {% for contact in contacts %}
+                <div class="col-lg-8 col-md-10">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">{{ contact['name'] }}</h5>
+                            <p class="card-text">PIN: {{ contact['pin'] }}</p>
+                            <form method="POST" action="{{ url_for('payment') }}">
+                                <input type="hidden" name="contact_name" value="{{ contact['name'] }}">
+                                <input type="hidden" name="contact_pin" value="{{ contact['pin'] }}">
+                                <div class="form-group">
+                                    <label for="inputPin">Enter 4-Digit PIN:</label>
+                                    <input type="password" class="form-control" id="inputPin" name="inputPin" minlength="4" maxlength="4" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Pay</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

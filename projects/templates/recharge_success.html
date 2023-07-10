@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recharge Successful - Rapid Pay</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Rapid Pay</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/pay_to_contacts">Pay to Contacts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/recharge">Recharge</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Sign Out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <h1 class="text-center mt-4">Recharge Successful!</h1>
+        <div class="row justify-content-center">
+            <div class="col-lg-15 col-md-17">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Confirmation</h5>
+                        <p class="card-text">Phone Number: {{ recharge_data.phone_number }}</p>
+                        <p class="card-text">Amount: {{ recharge_data.amount }}</p>
+                        <p class="card-text">Thank you for recharging!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
